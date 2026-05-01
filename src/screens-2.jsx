@@ -34,7 +34,7 @@ function ScreenGenerating({ businessName, onDone }) {
 
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <h1 style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 44, lineHeight: 1, margin: 0, fontWeight: 400,
           color: 'var(--ink)', letterSpacing: -1.5,
         }}>
@@ -141,7 +141,7 @@ function ScreenLeadDetail({ lead, onBack, onSendWhatsapp, onChangeStatus, onRege
               fontSize: 10, letterSpacing: 1.5, color: 'rgba(255,255,255,0.7)',
             }}>LEAD · {lead.id.toUpperCase()}</div>
             <h1 style={{
-              fontFamily: '"Instrument Serif", serif',
+              fontFamily: '"Roboto", serif',
               fontSize: 38, lineHeight: 1, margin: '6px 0 0',
               fontWeight: 400, letterSpacing: -1,
             }}>{lead.name}</h1>
@@ -231,7 +231,7 @@ function ScreenLeadDetail({ lead, onBack, onSendWhatsapp, onChangeStatus, onRege
               padding: '14px 16px',
               background: 'var(--paper)',
               border: '1px solid var(--hairline)',
-              fontFamily: '"Instrument Serif", serif',
+              fontFamily: '"Roboto", serif',
               fontSize: 17, lineHeight: 1.4, color: 'var(--ink)',
               fontStyle: 'italic',
             }}>"{lead.notes}"</div>
@@ -285,7 +285,7 @@ function ProposalRow({ proposal, businessName, index }) {
             fontSize: 9, letterSpacing: 1, color: 'var(--ink-3)',
           }}>0{index}</span>
           <span style={{
-            fontFamily: '"Instrument Serif", serif',
+            fontFamily: '"Roboto", serif',
             fontSize: 20, color: 'var(--ink)', fontStyle: 'italic',
           }}>{proposal.name}</span>
         </div>
@@ -493,7 +493,7 @@ function ScreenWhatsapp({ lead, onBack, onSent }) {
 
       <div style={{ padding: '16px 20px 0' }}>
         <h1 style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 40, lineHeight: 1, margin: 0, fontWeight: 400,
           color: 'var(--ink)', letterSpacing: -1.5,
         }}>Mensaje al<br/><span style={{ fontStyle: 'italic' }}>cliente</span>.</h1>
@@ -559,7 +559,7 @@ function ScreenWhatsapp({ lead, onBack, onSent }) {
                 fontSize: 9, letterSpacing: 1, color: 'var(--ink-3)',
               }}>LOSLOGOS.APP</div>
               <div style={{
-                fontFamily: '"Instrument Serif", serif',
+                fontFamily: '"Roboto", serif',
                 fontSize: 17, color: 'var(--ink)',
                 overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
               }}>3 propuestas para {lead.name}</div>
@@ -617,7 +617,7 @@ function ScreenLanding({ lead, onBack }) {
           fontSize: 10, letterSpacing: 1.5, color: 'var(--ink-3)',
         }}>UNA PROPUESTA PRIVADA PARA</div>
         <h1 style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 44, lineHeight: 0.95, margin: '6px 0 0',
           fontWeight: 400, letterSpacing: -1.5, color: 'var(--ink)',
         }}>{lead.name}</h1>
@@ -676,7 +676,7 @@ function ScreenLanding({ lead, onBack }) {
                   fontSize: 9, letterSpacing: 1, color: 'var(--ink-3)',
                 }}>OPCIÓN 0{i + 1}</div>
                 <div style={{
-                  fontFamily: '"Instrument Serif", serif',
+                  fontFamily: '"Roboto", serif',
                   fontSize: 22, color: 'var(--ink)', fontStyle: 'italic',
                   lineHeight: 1.1, marginTop: 2,
                 }}>{p.name}</div>
@@ -702,7 +702,7 @@ function ScreenLanding({ lead, onBack }) {
             fontSize: 10, letterSpacing: 1.5, opacity: 0.6,
           }}>SI LE GUSTA ALGUNA</div>
           <h2 style={{
-            fontFamily: '"Instrument Serif", serif',
+            fontFamily: '"Roboto", serif',
             fontSize: 32, lineHeight: 1, margin: '6px 0 0',
             fontWeight: 400, letterSpacing: -1,
           }}>Hagámoslo<br/><span style={{ fontStyle: 'italic' }}>realidad</span>.</h2>

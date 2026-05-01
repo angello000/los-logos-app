@@ -156,7 +156,7 @@ function LoslogosApp() {
         zIndex: 1,
       }}>
         <div style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 22, fontStyle: 'italic',
           color: canvasInk,
         }}>Loslogos</div>

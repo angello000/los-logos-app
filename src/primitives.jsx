@@ -81,7 +81,7 @@ function ProposalLogo({ proposal, businessName, size = 140, monochrome = false }
           width: 36, height: 1, background: fg, marginBottom: 12,
         }} />
         <div style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: size * 0.18, lineHeight: 1, color: fg,
           fontStyle: 'italic',
         }}>{upper.slice(0, 14)}</div>
@@ -169,7 +169,7 @@ function SocialMockup({ proposal, businessName, w = 200 }) {
           background: proposal.swatch,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           color: proposal.accent,
-          fontFamily: '"Instrument Serif", serif', fontSize: 11,
+          fontFamily: '"Roboto", serif', fontSize: 11,
         }}>
           {businessName[0]}
         </div>

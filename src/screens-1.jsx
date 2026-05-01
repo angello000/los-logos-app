@@ -63,7 +63,7 @@ function ScreenOnboarding({ onContinue }) {
       {/* content */}
       <div style={{ flex: 1, padding: '40px 24px', display: 'flex', flexDirection: 'column' }}>
         <h1 style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 52, lineHeight: 1.0, margin: 0,
           fontWeight: 400, color: 'var(--ink)',
           letterSpacing: -1.5, whiteSpace: 'pre-line',
@@ -85,7 +85,7 @@ function ScreenOnboarding({ onContinue }) {
               padding: '8px 0',
             }}>
               <span style={{
-                fontFamily: '"Instrument Serif", serif',
+                fontFamily: '"Roboto", serif',
                 fontSize: 28, color: 'var(--ink-2)', marginRight: 10,
               }}>+52</span>
               <input
@@ -94,7 +94,7 @@ function ScreenOnboarding({ onContinue }) {
                 placeholder="55 0000 0000"
                 style={{
                   flex: 1,
-                  fontFamily: '"Instrument Serif", serif',
+                  fontFamily: '"Roboto", serif',
                   fontSize: 28,
                   color: 'var(--ink)',
                   background: 'transparent',
@@ -128,7 +128,7 @@ function ScreenOnboarding({ onContinue }) {
                   background: 'var(--ink)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   color: 'var(--paper)',
-                  fontFamily: '"Instrument Serif", serif', fontSize: 18,
+                  fontFamily: '"Roboto", serif', fontSize: 18,
                   fontStyle: 'italic',
                 }}>{p.name[0]}</div>
                 <div style={{ flex: 1 }}>
@@ -264,7 +264,7 @@ function ScreenCamera({ onCapture, onOpenLeads, leadCount }) {
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         </button>
         <div style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 22, fontStyle: 'italic',
           color: '#fff',
         }}>Loslogos</div>
@@ -314,7 +314,7 @@ function ScreenCamera({ onCapture, onOpenLeads, leadCount }) {
             <div style={{
               width: 24, height: 24, background: '#fff', color: '#000',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontFamily: '"Instrument Serif", serif', fontSize: 14, fontWeight: 600,
+              fontFamily: '"Roboto", serif', fontSize: 14, fontWeight: 600,
             }}>{leadCount}</div>
             <span style={{
               fontFamily: '"JetBrains Mono", monospace',
@@ -449,7 +449,7 @@ function ScreenCaptureForm({ onSave, onCancel }) {
         <FormField label="WhatsApp · opcional" mono="03">
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span style={{
-              fontFamily: '"Instrument Serif", serif', fontSize: 18,
+              fontFamily: '"Roboto", serif', fontSize: 18,
               color: 'var(--ink-2)',
             }}>+52</span>
             <input
@@ -489,7 +489,7 @@ const inputStyle = {
   width: '100%',
   background: 'transparent',
   border: 'none', outline: 'none',
-  fontFamily: '"Instrument Serif", serif',
+  fontFamily: '"Roboto", serif',
   fontSize: 22, color: 'var(--ink)',
   padding: 0,
 };
@@ -581,7 +581,7 @@ function ScreenLeadsList({ leads, onSelectLead, onBack, onNewLead }) {
       {/* editorial header */}
       <div style={{ padding: '18px 20px 0' }}>
         <h1 style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 56, lineHeight: 0.95, margin: 0,
           fontWeight: 400, color: 'var(--ink)',
           letterSpacing: -2,
@@ -656,7 +656,7 @@ function ScreenLeadsList({ leads, onSelectLead, onBack, onNewLead }) {
         {filtered.length === 0 && (
           <div style={{
             padding: '60px 20px', textAlign: 'center',
-            fontFamily: '"Instrument Serif", serif', fontSize: 22, fontStyle: 'italic',
+            fontFamily: '"Roboto", serif', fontSize: 22, fontStyle: 'italic',
             color: 'var(--ink-3)',
           }}>Sin leads en este estado.</div>
         )}
@@ -696,7 +696,7 @@ function LeadCard({ lead, index, onClick }) {
       </div>
       <div style={{ padding: '10px 12px 12px' }}>
         <div style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 17, lineHeight: 1.1, color: 'var(--ink)',
           marginBottom: 4,
           overflow: 'hidden', textOverflow: 'ellipsis',
@@ -731,7 +731,7 @@ function LeadRow({ lead, index, onClick, isLast }) {
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
         <div style={{
-          fontFamily: '"Instrument Serif", serif',
+          fontFamily: '"Roboto", serif',
           fontSize: 17, color: 'var(--ink)', lineHeight: 1.1,
           overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
         }}>{lead.name}</div>
