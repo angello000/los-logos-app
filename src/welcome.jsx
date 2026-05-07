@@ -46,7 +46,7 @@ function ScreenWelcome({ onContinue }) {
             fontFamily: '"Inter Tight", sans-serif',
             fontSize: 14,
             lineHeight: 1.5,
-            color: '#FFFFFF',
+            color: '#00E676',
             fontWeight: 500,
             letterSpacing: 0.3,
             maxWidth: 260,
