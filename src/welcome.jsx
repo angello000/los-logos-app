@@ -11,7 +11,7 @@ function ScreenWelcome({ onContinue }) {
   return (
     <div style={{
       width: '100%', height: '100%',
-      background: 'var(--bg)',
+      background: '#383737',
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       boxSizing: 'border-box',
