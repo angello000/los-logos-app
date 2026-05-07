@@ -12,7 +12,7 @@ function LoslogosApp() {
   const [tweaksOpen, setTweaksOpen] = useState(false);
 
   // app state
-  const [screen, setScreen] = useState('onboarding'); // onboarding | camera | capture | generating | leads | detail | whatsapp | landing
+  const [screen, setScreen] = useState('welcome'); // welcome | onboarding | camera | capture | generating | leads | detail | whatsapp | landing
   const [leads, setLeads] = useState(window.SEED_LEADS);
   const [activeLeadId, setActiveLeadId] = useState('l1');
   const [statusMenuOpen, setStatusMenuOpen] = useState(false);
@@ -55,6 +55,8 @@ function LoslogosApp() {
   const activeLead = leads.find(l => l.id === activeLeadId) || leads[0];
 
   // navigation handlers
+  const goWelcome = () => setScreen('welcome');
+  const goOnboarding = () => setScreen('onboarding');
   const goCamera = () => setScreen('camera');
   const goCapture = () => setScreen('capture');
   const goGenerating = () => setScreen('generating');
@@ -99,7 +101,8 @@ function LoslogosApp() {
 
   // current screen
   let content;
-  if (screen === 'onboarding') content = <ScreenOnboarding onContinue={goCamera} />;
+  if (screen === 'welcome') content = <ScreenWelcome onContinue={goOnboarding} />;
+  else if (screen === 'onboarding') content = <ScreenOnboarding onContinue={goCamera} />;
   else if (screen === 'camera') content = <ScreenCamera onCapture={goCapture} onOpenLeads={goLeads} leadCount={leads.length} />;
   else if (screen === 'capture') content = <ScreenCaptureForm onSave={saveCapture} onCancel={goCamera} />;
   else if (screen === 'generating') content = <ScreenGenerating businessName={activeLead.name} onDone={onGenerationDone} />;
@@ -175,6 +178,7 @@ function LoslogosApp() {
         maxWidth: 720,
       }}>
         {[
+          ['welcome', '00 Bienvenida'],
           ['onboarding', '01 Onboarding'],
           ['camera', '02 Cámara'],
           ['capture', '03 Captura'],
