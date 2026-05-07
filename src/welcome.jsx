@@ -46,7 +46,7 @@ function ScreenWelcome({ onContinue }) {
             fontFamily: '"Inter Tight", sans-serif',
             fontSize: 14,
             lineHeight: 1.5,
-            color: 'var(--ink-2)',
+            color: '#FFFFFF',
             fontWeight: 500,
             letterSpacing: 0.3,
             maxWidth: 260,
@@ -68,8 +68,8 @@ function ScreenWelcome({ onContinue }) {
       }}>
         <button onClick={onContinue} style={{
           padding: '16px 48px',
-          background: 'var(--ink)',
-          color: 'var(--paper)',
+          background: '#FFFFFF',
+          color: '#383737',
           border: 'none',
           borderRadius: 100,
           fontFamily: '"Inter Tight", sans-serif',
