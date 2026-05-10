@@ -11,7 +11,7 @@ function ScreenWelcome({ onContinue }) {
   return (
     <div style={{
       width: '100%', height: '100%',
-      background: '#383737',
+      background: '#1E3A8A', // Cambiado de #383737 a un azul (#1E3A8A)
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       boxSizing: 'border-box',
@@ -46,7 +46,7 @@ function ScreenWelcome({ onContinue }) {
             fontFamily: '"Inter Tight", sans-serif',
             fontSize: 14,
             lineHeight: 1.5,
-            color: '#00E676',
+            color: '#FFD700', // Cambiado de verde (#00E676) a amarillo (#FFD700)
             fontWeight: 500,
             letterSpacing: 0.3,
             maxWidth: 260,
