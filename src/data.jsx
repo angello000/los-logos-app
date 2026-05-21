@@ -43,6 +43,7 @@ const SEED_LEADS = [
     photoLabel: 'fachada · ferretería',
     initials: 'DB',
     proposalsReady: true,
+    favorited: true,
     lastContact: 'Hace 2 días',
   },
   {
@@ -87,6 +88,7 @@ const SEED_LEADS = [
     photoLabel: 'cafetería · interior',
     initials: 'GC',
     proposalsReady: true,
+    favorited: true,
     lastContact: 'Hoy · 09:15',
   },
 ];

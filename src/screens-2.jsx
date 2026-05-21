@@ -724,7 +724,201 @@ function ScreenLanding({ lead, onBack }) {
   );
 }
 
+// ──────────────────────────────────────────
+// 9. FAVORITOS
+// ──────────────────────────────────────────
+function ScreenFavorites({ leads, onSelectLead }) {
+  const favorited = leads.filter(l => l.favorited && l.proposalsReady);
+
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: 'var(--bg)',
+      display: 'flex', flexDirection: 'column',
+      paddingBottom: 62,
+    }}>
+      {/* nav */}
+      <div style={{
+        padding: '60px 20px 14px',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      }}>
+        <div style={{ width: 36 }} />
+        <span style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: 10, letterSpacing: 1.5, color: 'var(--ink-3)',
+        }}>FAVORITOS</span>
+        <div style={{ width: 36 }} />
+      </div>
+
+      {/* header */}
+      <div style={{ padding: '8px 20px 0' }}>
+        <h1 style={{
+          fontFamily: '"Roboto", serif',
+          fontSize: 56, lineHeight: 0.95, margin: 0,
+          fontWeight: 400, color: 'var(--ink)', letterSpacing: -2,
+        }}>
+          Favoritos
+          <span style={{
+            fontFamily: '"JetBrains Mono", monospace',
+            fontSize: 13, color: 'var(--ink-3)', letterSpacing: 0,
+            marginLeft: 12, verticalAlign: 'top',
+          }}>{String(favorited.length).padStart(2, '0')}</span>
+        </h1>
+        <div style={{
+          marginTop: 6,
+          fontFamily: '"Inter Tight", sans-serif',
+          fontSize: 13, color: 'var(--ink-2)',
+        }}>Propuestas que guardaste para presentar.</div>
+      </div>
+
+      {/* list */}
+      <div style={{ flex: 1, overflow: 'auto', padding: '20px 20px 20px' }}>
+        {favorited.length === 0 ? (
+          <div style={{
+            padding: '60px 0', textAlign: 'center',
+            fontFamily: '"Roboto", serif', fontSize: 22, fontStyle: 'italic',
+            color: 'var(--ink-3)',
+          }}>Sin favoritos aún.</div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {favorited.map(lead => (
+              <FavoriteCard key={lead.id} lead={lead} onView={() => onSelectLead(lead.id)} />
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FavoriteCard({ lead, onView }) {
+  return (
+    <div style={{
+      background: 'var(--paper)',
+      border: '1px solid var(--hairline)',
+      padding: 14,
+    }}>
+      <div style={{
+        display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+        marginBottom: 12,
+      }}>
+        <div>
+          <div style={{
+            fontFamily: '"Roboto", serif',
+            fontSize: 18, color: 'var(--ink)', lineHeight: 1.1,
+          }}>{lead.name}</div>
+          <div style={{
+            fontFamily: '"JetBrains Mono", monospace',
+            fontSize: 9, letterSpacing: 1, color: 'var(--ink-3)', marginTop: 4,
+          }}>{lead.capturedAt.toUpperCase()}</div>
+        </div>
+        <div style={{
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: 9, color: 'var(--ink-3)', letterSpacing: 0.5,
+          display: 'flex', alignItems: 'center', gap: 4,
+        }}>
+          2 / 3
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        </div>
+      </div>
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+        <div style={{ flex: 1, height: 80 }}>
+          <ProposalLogo proposal={window.PROPOSAL_TEMPLATES[1]} businessName={lead.name} size={80} />
+        </div>
+        <button onClick={onView} style={{
+          padding: '10px 16px',
+          background: 'var(--ink)', color: 'var(--paper)',
+          border: 'none', cursor: 'pointer',
+          fontFamily: '"Inter Tight", sans-serif',
+          fontSize: 13, fontWeight: 600,
+        }}>ver →</button>
+      </div>
+    </div>
+  );
+}
+
+// ──────────────────────────────────────────
+// 10. CONFIGURACIÓN
+// ──────────────────────────────────────────
+function ScreenConfig({ onBack }) {
+  const settings = [
+    { label: 'Correo electrónico', value: 'sebastian@99logos.app' },
+    { label: 'Celular vinculado', value: '+52 55 0000 0000' },
+    { label: 'Estilo visual', value: 'Minimal · clásico' },
+    { label: 'Idioma', value: 'Español' },
+    { label: 'Plan', value: 'Pro · mensual' },
+  ];
+
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: 'var(--bg)',
+      display: 'flex', flexDirection: 'column',
+      paddingBottom: 62,
+    }}>
+      {/* nav */}
+      <div style={{
+        padding: '60px 20px 14px',
+        display: 'flex', alignItems: 'center',
+      }}>
+        <button onClick={onBack} style={{
+          width: 36, height: 36, background: 'none',
+          border: '1px solid var(--hairline)',
+          cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: 'var(--ink)',
+        }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <span style={{
+          flex: 1, textAlign: 'center',
+          fontFamily: '"JetBrains Mono", monospace',
+          fontSize: 10, letterSpacing: 1.5, color: 'var(--ink-3)',
+        }}>AJUSTES</span>
+        <div style={{ width: 36 }} />
+      </div>
+
+      {/* header */}
+      <div style={{ padding: '8px 20px 0' }}>
+        <h1 style={{
+          fontFamily: '"Roboto", serif',
+          fontSize: 56, lineHeight: 0.95, margin: 0,
+          fontWeight: 400, color: 'var(--ink)', letterSpacing: -2,
+        }}>Configuración</h1>
+      </div>
+
+      {/* settings list */}
+      <div style={{ flex: 1, overflow: 'auto', padding: '24px 20px 0' }}>
+        {settings.map((s, i) => (
+          <div key={s.label} style={{
+            padding: '16px 0',
+            borderBottom: `1px dashed var(--hairline)`,
+            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          }}>
+            <div>
+              <div style={{
+                fontFamily: '"Inter Tight", sans-serif',
+                fontSize: 14, fontWeight: 500, color: 'var(--ink)',
+              }}>{s.label}</div>
+              <div style={{
+                fontFamily: '"JetBrains Mono", monospace',
+                fontSize: 9, letterSpacing: 0.5, color: 'var(--ink-3)', marginTop: 3,
+              }}>{s.value}</div>
+            </div>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="2"><path d="M9 6l6 6-6 6"/></svg>
+          </div>
+        ))}
+
+        <button style={{
+          marginTop: 28, padding: 0, background: 'none', border: 'none', cursor: 'pointer',
+          fontFamily: '"Inter Tight", sans-serif',
+          fontSize: 14, color: '#C24A2C', letterSpacing: -0.2,
+        }}>Cerrar sesión</button>
+      </div>
+    </div>
+  );
+}
+
 Object.assign(window, {
   ScreenGenerating, ScreenLeadDetail, ScreenWhatsapp, ScreenLanding,
+  ScreenFavorites, FavoriteCard, ScreenConfig,
   ProposalRow, BeforeAfterStack, HistoryTimeline,
 });
