@@ -12,7 +12,7 @@ function LoslogosApp() {
   const [tweaksOpen, setTweaksOpen] = useState(false);
 
   // app state
-  const [screen, setScreen] = useState('welcome'); // welcome | onboarding | camera | capture | generating | leads | detail | whatsapp | landing
+  const [screen, setScreen] = useState('welcome'); // welcome | onboarding | home | camera | capture | generating | leads | detail | whatsapp | landing | favorites | config
   const [leads, setLeads] = useState(window.SEED_LEADS);
   const [activeLeadId, setActiveLeadId] = useState('l1');
   const [statusMenuOpen, setStatusMenuOpen] = useState(false);
@@ -57,6 +57,7 @@ function LoslogosApp() {
   // navigation handlers
   const goWelcome = () => setScreen('welcome');
   const goOnboarding = () => setScreen('onboarding');
+  const goHome = () => setScreen('home');
   const goCamera = () => setScreen('camera');
   const goCapture = () => setScreen('capture');
   const goGenerating = () => setScreen('generating');
@@ -64,6 +65,8 @@ function LoslogosApp() {
   const goDetail = (id) => { setActiveLeadId(id); setScreen('detail'); };
   const goWhatsapp = () => setScreen('whatsapp');
   const goLanding = () => setScreen('landing');
+  const goFavorites = () => setScreen('favorites');
+  const goConfig = () => setScreen('config');
 
   const saveCapture = (data) => {
     const newLead = {
@@ -102,11 +105,14 @@ function LoslogosApp() {
   // current screen
   let content;
   if (screen === 'welcome') content = <ScreenWelcome onContinue={goOnboarding} />;
-  else if (screen === 'onboarding') content = <ScreenOnboarding onContinue={goCamera} />;
+  else if (screen === 'onboarding') content = <ScreenOnboarding onContinue={goHome} />;
+  else if (screen === 'home') content = <ScreenHome onNewClient={goCamera} onViewClients={goLeads} />;
   else if (screen === 'camera') content = <ScreenCamera onCapture={goCapture} onOpenLeads={goLeads} leadCount={leads.length} />;
   else if (screen === 'capture') content = <ScreenCaptureForm onSave={saveCapture} onCancel={goCamera} />;
   else if (screen === 'generating') content = <ScreenGenerating businessName={activeLead.name} onDone={onGenerationDone} />;
-  else if (screen === 'leads') content = <ScreenLeadsList leads={leads} onSelectLead={goDetail} onBack={goCamera} onNewLead={goCamera} />;
+  else if (screen === 'leads') content = <ScreenLeadsList leads={leads} onSelectLead={goDetail} onBack={goHome} onNewLead={goCamera} />;
+  else if (screen === 'favorites') content = <ScreenFavorites leads={leads} onSelectLead={goDetail} />;
+  else if (screen === 'config') content = <ScreenConfig onBack={goHome} />;
   else if (screen === 'detail') content = <ScreenLeadDetail
     lead={activeLead}
     onBack={goLeads}
@@ -122,9 +128,21 @@ function LoslogosApp() {
   else if (screen === 'landing') content = <ScreenLanding lead={activeLead} onBack={() => setScreen('detail')} />;
 
   // pick frame
+  const showTabBar = ['home', 'camera', 'leads', 'favorites', 'config'].includes(screen);
+
   const wrapped = (
-    <div style={{ ...themeVars, width: '100%', height: '100%', background: 'var(--bg)' }}>
+    <div style={{ ...themeVars, width: '100%', height: '100%', background: 'var(--bg)', position: 'relative' }}>
       {content}
+      {showTabBar && (
+        <TabBar
+          active={screen}
+          onHome={goHome}
+          onLeads={goLeads}
+          onCamera={goCamera}
+          onFavorites={goFavorites}
+          onConfig={goConfig}
+        />
+      )}
     </div>
   );
 
@@ -180,13 +198,16 @@ function LoslogosApp() {
         {[
           ['welcome', '00 Bienvenida'],
           ['onboarding', '01 Onboarding'],
-          ['camera', '02 Cámara'],
-          ['capture', '03 Captura'],
-          ['generating', '04 Generando'],
-          ['leads', '05 Leads'],
-          ['detail', '06 Detalle'],
-          ['whatsapp', '07 WhatsApp'],
-          ['landing', '08 Landing'],
+          ['home', '02 Home'],
+          ['camera', '03 Cámara'],
+          ['capture', '04 Captura'],
+          ['generating', '05 Generando'],
+          ['leads', '06 Leads'],
+          ['detail', '07 Detalle'],
+          ['whatsapp', '08 WhatsApp'],
+          ['landing', '09 Landing'],
+          ['favorites', '10 Favoritos'],
+          ['config', '11 Config'],
         ].map(([id, label]) => (
           <button key={id} onClick={() => setScreen(id)} style={{
             padding: '6px 10px',

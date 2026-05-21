@@ -1,4 +1,56 @@
-// Loslogos — screens part 1: Onboarding, Home/Camera, Capture, Leads list
+// Loslogos — screens part 1: Home, Onboarding, Camera, Capture, Leads list
+
+// ──────────────────────────────────────────
+// 0. HOME HUB
+// ──────────────────────────────────────────
+function ScreenHome({ onNewClient, onViewClients }) {
+  return (
+    <div style={{
+      width: '100%', height: '100%', background: 'var(--bg)',
+      display: 'flex', flexDirection: 'column',
+      paddingBottom: 62,
+    }}>
+      <div style={{
+        flex: 1,
+        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+        padding: '0 28px',
+        gap: 32,
+      }}>
+        {/* 99 badge */}
+        <div style={{
+          width: 84, height: 84, borderRadius: '50%',
+          border: '2px solid var(--ink)',
+          background: 'var(--paper)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <span style={{
+            fontFamily: '"Roboto", serif',
+            fontSize: 30, fontWeight: 700, fontStyle: 'italic',
+            color: 'var(--ink)',
+          }}>99</span>
+        </div>
+
+        <h1 style={{
+          fontFamily: '"Roboto", serif',
+          fontSize: 44, lineHeight: 1.05, margin: 0, fontWeight: 400,
+          color: 'var(--ink)', letterSpacing: -1.5,
+          textAlign: 'center',
+        }}>
+          ¿Qué quieres<br/>hacer hoy?
+        </h1>
+
+        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <PrimaryButton onClick={onNewClient}>
+            + Nuevo cliente
+          </PrimaryButton>
+          <SecondaryButton onClick={onViewClients}>
+            👥 Ver clientes
+          </SecondaryButton>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 // ──────────────────────────────────────────
 // 1. ONBOARDING
@@ -281,7 +333,7 @@ function ScreenCamera({ onCapture, onOpenLeads, leadCount }) {
       {/* bottom controls */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 10,
-        padding: '20px 24px 50px',
+        padding: '20px 24px 80px',
         background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 60%)',
       }}>
         {/* mode tabs */}
@@ -638,7 +690,7 @@ function ScreenLeadsList({ leads, onSelectLead, onBack, onNewLead }) {
       </div>
 
       {/* list */}
-      <div style={{ flex: 1, overflow: 'auto', padding: '20px 20px 100px' }}>
+      <div style={{ flex: 1, overflow: 'auto', padding: '20px 20px 150px' }}>
         {view === 'cards' ? (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             {filtered.map((lead, i) => (
@@ -664,7 +716,7 @@ function ScreenLeadsList({ leads, onSelectLead, onBack, onNewLead }) {
 
       {/* FAB */}
       <button onClick={onNewLead} style={{
-        position: 'absolute', bottom: 40, right: 20, zIndex: 20,
+        position: 'absolute', bottom: 80, right: 20, zIndex: 20,
         width: 64, height: 64, borderRadius: '50%',
         background: 'var(--ink)', color: 'var(--paper)',
         border: 'none', cursor: 'pointer',
@@ -747,6 +799,6 @@ function LeadRow({ lead, index, onClick, isLast }) {
 }
 
 Object.assign(window, {
-  ScreenOnboarding, ScreenCamera, ScreenCaptureForm,
+  ScreenHome, ScreenOnboarding, ScreenCamera, ScreenCaptureForm,
   ScreenLeadsList, LeadCard, LeadRow, FormField,
 });

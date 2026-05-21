@@ -284,7 +284,110 @@ function Hairline({ style = {} }) {
   return <div style={{ height: 1, background: 'var(--hairline)', ...style }} />;
 }
 
+// ──────────────────────────────────────────
+// Tab bar — 5-tab bottom navigation
+// ──────────────────────────────────────────
+function TabBar({ active, onHome, onLeads, onCamera, onFavorites, onConfig }) {
+  const tabs = [
+    {
+      id: 'home', label: 'Inicio', action: onHome,
+      icon: (on) => (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={on ? 2.5 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+      ),
+    },
+    {
+      id: 'leads', label: 'Clientes', action: onLeads,
+      icon: (on) => (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={on ? 2.5 : 1.8} strokeLinecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      ),
+    },
+    {
+      id: 'camera', label: null, action: onCamera, center: true,
+      icon: () => (
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      ),
+    },
+    {
+      id: 'favorites', label: 'Favoritos', action: onFavorites,
+      icon: (on) => (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill={on ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth={on ? 2 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+        </svg>
+      ),
+    },
+    {
+      id: 'config', label: 'Ajustes', action: onConfig,
+      icon: (on) => (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={on ? 2.5 : 1.8} strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+      ),
+    },
+  ];
+
+  return (
+    <div style={{
+      position: 'absolute', bottom: 0, left: 0, right: 0,
+      height: 62,
+      background: 'var(--bg)',
+      borderTop: '1px solid var(--hairline)',
+      display: 'flex', alignItems: 'stretch',
+      zIndex: 30,
+    }}>
+      {tabs.map(tab => {
+        const isActive = active === tab.id;
+        return (
+          <button
+            key={tab.id}
+            onClick={tab.action}
+            style={{
+              flex: 1,
+              display: 'flex', flexDirection: 'column',
+              alignItems: 'center', justifyContent: 'center',
+              background: 'none', border: 'none', cursor: 'pointer',
+              color: isActive ? 'var(--ink)' : 'var(--ink-3)',
+              gap: 3, padding: 0,
+            }}
+          >
+            {tab.center ? (
+              <div style={{
+                width: 50, height: 50, borderRadius: '50%',
+                background: 'var(--ink)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                color: 'var(--paper)',
+                transform: 'translateY(-12px)',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+              }}>
+                {tab.icon()}
+              </div>
+            ) : (
+              <>
+                {tab.icon(isActive)}
+                <span style={{
+                  fontFamily: '"JetBrains Mono", monospace',
+                  fontSize: 7, letterSpacing: 0.5, lineHeight: 1,
+                }}>{tab.label}</span>
+              </>
+            )}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 Object.assign(window, {
   PhotoPlaceholder, StatusTag, ProposalLogo, SocialMockup,
-  PrimaryButton, SecondaryButton, SectionHeader, Hairline,
+  PrimaryButton, SecondaryButton, SectionHeader, Hairline, TabBar,
 });
