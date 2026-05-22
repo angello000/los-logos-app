@@ -3,11 +3,7 @@
 // Figma Plugin · Variables, Text Styles & Effect Styles
 // ============================================================
 
-figma.showUI(__html__, {
-  width: 460,
-  height: 620,
-  title: 'Design System Installer',
-});
+figma.showUI(__html__, { width: 460, height: 620 });
 
 // ─── Helpers ─────────────────────────────────────────────────
 

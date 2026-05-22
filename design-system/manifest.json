@@ -1,9 +1,8 @@
 {
-  "name": "Cine Colombia — Design System Installer",
+  "name": "Cine Colombia Design System",
   "id": "1394857209184375",
   "api": "1.0.0",
   "main": "code.js",
   "ui": "ui.html",
-  "editorType": ["figma", "dev"],
-  "documentAccess": "dynamic-page"
+  "editorType": ["figma"]
 }
