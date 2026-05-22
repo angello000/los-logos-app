@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0c141d;
+      color: #dbe3f0;
+      padding: 24px;
+      min-height: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .logo-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff5625;
+      box-shadow: 0 0 8px #ff5625aa;
+    }
+
+    h1 {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #dbe3f0;
+    }
+
+    p.subtitle {
+      font-size: 11px;
+      color: #ad887e;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .tokens-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .token-pill {
+      background: #182029;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 8px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .token-swatch {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .token-info { flex: 1; min-width: 0; }
+
+    .token-name {
+      font-size: 10px;
+      font-weight: 600;
+      color: #dbe3f0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .token-value {
+      font-size: 9px;
+      color: #ad887e;
+      font-family: monospace;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 20px 0;
+    }
+
+    .what-creates {
+      background: #182029;
+      border: 1px solid rgba(70, 234, 237, 0.2);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .what-creates h3 {
+      font-size: 10px;
+      font-weight: 700;
+      color: #46eaed;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .what-creates ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .what-creates li {
+      font-size: 11px;
+      color: #dbe3f0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .what-creates li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #46eaed;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .btn-build {
+      width: 100%;
+      padding: 12px;
+      background: #ff5625;
+      color: #601400;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+
+    .btn-build:hover { opacity: 0.9; }
+    .btn-build:active { transform: translateY(1px); opacity: 0.8; }
+    .btn-build:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+
+    .progress-area {
+      margin-top: 16px;
+      display: none;
+    }
+
+    .progress-area.visible { display: block; }
+
+    .progress-bar-wrap {
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #ff5625, #46eaed);
+      border-radius: 99px;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-log {
+      font-size: 10px;
+      color: #ad887e;
+      line-height: 1.8;
+      font-family: monospace;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    .success-banner {
+      display: none;
+      background: rgba(70, 234, 237, 0.08);
+      border: 1px solid rgba(70, 234, 237, 0.3);
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .success-banner.visible { display: block; }
+
+    .success-banner h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #46eaed;
+      margin-bottom: 4px;
+    }
+
+    .success-banner p {
+      font-size: 11px;
+      color: #dbe3f0;
+      opacity: 0.7;
+    }
+
+    .error-banner {
+      display: none;
+      background: rgba(255, 180, 171, 0.08);
+      border: 1px solid rgba(255, 180, 171, 0.3);
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 16px;
+      font-size: 11px;
+      color: #ffb4ab;
+    }
+
+    .error-banner.visible { display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="logo">
+    <div class="logo-dot"></div>
+    <h1>Eon Dark System Builder</h1>
+  </div>
+
+  <p class="subtitle">
+    Genera el sistema de diseño completo basado en tu archivo <strong>DESIGN.md</strong>
+    — colores, tipografía, espaciado, elevación y componentes.
+  </p>
+
+  <div class="what-creates">
+    <h3>Qué se crea</h3>
+    <ul>
+      <li>52 estilos de color (Paint Styles) con grupos</li>
+      <li>9 estilos de tipografía Roboto (Text Styles)</li>
+      <li>Página de documentación visual completa</li>
+      <li>Swatches de paleta por grupo semántico</li>
+      <li>Muestras de tipografía con metadata</li>
+      <li>Escala de espaciado (4px base grid)</li>
+      <li>Niveles de elevación con sombras reales</li>
+      <li>Componentes: Botones, Glass Card, Inputs, Chips</li>
+    </ul>
+  </div>
+
+  <div class="tokens-grid">
+    <div class="token-pill">
+      <div class="token-swatch" style="background:#ff5625"></div>
+      <div class="token-info">
+        <div class="token-name">primary/container</div>
+        <div class="token-value">#FF5625</div>
+      </div>
+    </div>
+    <div class="token-pill">
+      <div class="token-swatch" style="background:#46eaed"></div>
+      <div class="token-info">
+        <div class="token-name">secondary/default</div>
+        <div class="token-value">#46EAED</div>
+      </div>
+    </div>
+    <div class="token-pill">
+      <div class="token-swatch" style="background:#0c141d; border-color: rgba(255,255,255,0.2)"></div>
+      <div class="token-info">
+        <div class="token-name">surface/default</div>
+        <div class="token-value">#0C141D</div>
+      </div>
+    </div>
+    <div class="token-pill">
+      <div class="token-swatch" style="background:#dbe3f0"></div>
+      <div class="token-info">
+        <div class="token-name">on-surface/default</div>
+        <div class="token-value">#DBE3F0</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-build" id="buildBtn" onclick="startBuild()">
+    Construir sistema de diseño
+  </button>
+
+  <div class="progress-area" id="progressArea">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="progress-log" id="progressLog"></div>
+  </div>
+
+  <div class="success-banner" id="successBanner">
+    <h3>Sistema creado exitosamente</h3>
+    <p>Revisa la página "🎨 Eon Dark System" en tu archivo de Figma.<br>
+    Todos los estilos están disponibles en el panel de Assets.</p>
+  </div>
+
+  <div class="error-banner" id="errorBanner"></div>
+
+  <script>
+    let progress = 0;
+    const steps = 4;
+
+    function startBuild() {
+      const btn = document.getElementById('buildBtn');
+      btn.disabled = true;
+      btn.textContent = 'Construyendo…';
+
+      document.getElementById('progressArea').classList.add('visible');
+      document.getElementById('progressBar').style.width = '10%';
+
+      parent.postMessage({ pluginMessage: { type: 'build' } }, '*');
+    }
+
+    window.onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+
+      if (msg.type === 'progress') {
+        progress = Math.min(progress + (80 / steps), 90);
+        document.getElementById('progressBar').style.width = progress + '%';
+        const log = document.getElementById('progressLog');
+        log.innerHTML += msg.message + '<br>';
+        log.scrollTop = log.scrollHeight;
+      }
+
+      if (msg.type === 'done') {
+        document.getElementById('progressBar').style.width = '100%';
+        document.getElementById('successBanner').classList.add('visible');
+        document.getElementById('buildBtn').textContent = '✓ Completado';
+      }
+
+      if (msg.type === 'error') {
+        const errBanner = document.getElementById('errorBanner');
+        errBanner.textContent = 'Error: ' + msg.message;
+        errBanner.classList.add('visible');
+        document.getElementById('buildBtn').disabled = false;
+        document.getElementById('buildBtn').textContent = 'Reintentar';
+      }
+    };
+  </script>
+</body>
+</html>

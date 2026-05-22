@@ -1,0 +1,8 @@
+{
+  "name": "Eon Dark System Builder",
+  "id": "eon-dark-system-builder",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"]
+}
