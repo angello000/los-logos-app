@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System Installer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:      #E8A81C;
+      --gold-lt:   #F5C018;
+      --bg:        #0D0B08;
+      --surface:   #1C1917;
+      --surface-2: #252220;
+      --surface-3: #302D29;
+      --border:    #413E3A;
+      --text:      #FFFFFF;
+      --text-2:    #ADA7A0;
+      --text-3:    #7D7870;
+      --green:     #22C55E;
+      --red:       #EF4444;
+    }
+
+    body {
+      font-family: -apple-system, 'Inter', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-size: 13px;
+    }
+
+    /* ── Header */
+    .header {
+      padding: 20px 24px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo {
+      width: 36px; height: 36px;
+      background: var(--gold);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 900; color: var(--bg);
+      flex-shrink: 0;
+    }
+    .header-title { font-size: 15px; font-weight: 700; color: var(--gold); line-height: 1.2; }
+    .header-sub   { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+    /* ── Content */
+    .content { flex: 1; padding: 20px 24px; overflow-y: auto; }
+
+    .section-title {
+      font-size: 10px; font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 10px;
+    }
+
+    .items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+
+    .item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.25s;
+    }
+    .item.done { border-color: var(--green); }
+
+    .item-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      background: var(--border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      transition: background 0.25s;
+      margin-top: 1px;
+    }
+    .item.done .item-icon { background: var(--green); }
+    .item-icon svg { display: none; }
+    .item.done .item-icon svg { display: block; }
+    .item-icon-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--text-3);
+    }
+    .item.done .item-icon-dot { display: none; }
+
+    .item-label { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .item-desc  { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+
+    /* ── Progress area */
+    .progress-area { padding: 0 24px 16px; }
+
+    .progress-track {
+      height: 3px; background: var(--border);
+      border-radius: 99px; overflow: hidden; margin-bottom: 10px;
+    }
+    .progress-fill {
+      height: 100%; background: var(--gold);
+      border-radius: 99px; width: 0%;
+      transition: width 0.5s ease;
+    }
+
+    .log {
+      font-size: 11px; color: var(--gold);
+      min-height: 16px; font-style: italic;
+    }
+
+    /* ── Banner */
+    .banner {
+      display: none; align-items: center; gap: 8px;
+      padding: 10px 12px;
+      background: #14532D; border: 1px solid var(--green);
+      border-radius: 8px; margin-bottom: 12px;
+      font-size: 12px; font-weight: 500; color: #F0FDF4;
+    }
+
+    /* ── Footer */
+    .footer { padding: 16px 24px 24px; }
+
+    .btn {
+      width: 100%; padding: 13px;
+      border: none; border-radius: 8px;
+      font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: opacity 0.15s, background 0.15s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary { background: var(--gold); color: var(--bg); }
+    .btn-primary:hover:not(:disabled) { background: var(--gold-lt); }
+    .btn-primary:disabled {
+      background: var(--border); color: var(--text-3);
+      cursor: not-allowed;
+    }
+
+    /* ── Token count pills */
+    .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+    .pill {
+      padding: 3px 9px;
+      background: var(--surface-3); border-radius: 99px;
+      font-size: 10px; color: var(--text-2);
+      border: 1px solid var(--border);
+    }
+    .pill span { color: var(--gold); font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="logo">CC</div>
+    <div>
+      <div class="header-title">Cine Colombia Design System</div>
+      <div class="header-sub">Variables · Text Styles · Effect Styles</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="pills">
+      <div class="pill"><span>68</span> color vars</div>
+      <div class="pill"><span>67</span> number vars</div>
+      <div class="pill"><span>22</span> text styles</div>
+      <div class="pill"><span>9</span> effect styles</div>
+    </div>
+
+    <div class="section-title">Qué se instalará</div>
+    <div class="items">
+
+      <div class="item" id="item-colors">
+        <div class="item-icon">
+          <div class="item-icon-dot"></div>
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+            <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="item-label">Variables de Color</div>
+          <div class="item-desc">Primary, Secondary, Tertiary, Semantic, Surface, Text, States, Badges</div>
+        </div>
+      </div>
+
+      <div class="item" id="item-primitives">
+        <div class="item-icon">
+          <div class="item-icon-dot"></div>
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+            <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="item-label">Variables Primitivas</div>
+          <div class="item-desc">Spacing (4px grid), Border Radius, Border Width, Icon Sizes, Font Size, Line Height, Paragraph Spacing</div>
+        </div>
+      </div>
+
+      <div class="item" id="item-text">
+        <div class="item-icon">
+          <div class="item-icon-dot"></div>
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+            <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="item-label">Estilos de Texto · Roboto</div>
+          <div class="item-desc">Display, Headings H1–H6, Body, Labels, Captions, Overline</div>
+        </div>
+      </div>
+
+      <div class="item" id="item-effects">
+        <div class="item-icon">
+          <div class="item-icon-dot"></div>
+          <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+            <path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="item-label">Estilos de Efecto</div>
+          <div class="item-desc">Shadows XS → 2XL, Inner Shadow, Gold Glow, Card</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="progress-area">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressBar"></div>
+    </div>
+    <div class="banner" id="banner">✓ &nbsp;Sistema de diseño instalado correctamente</div>
+    <div class="log" id="log"></div>
+  </div>
+
+  <div class="footer">
+    <button class="btn btn-primary" id="installBtn" onclick="install()">
+      Instalar Design System
+    </button>
+  </div>
+
+  <script>
+    const steps = ['colors', 'primitives', 'text', 'effects'];
+    let stepIdx = 0;
+    let running = false;
+
+    function markDone(id) {
+      document.getElementById('item-' + id).classList.add('done');
+    }
+
+    function setProgress(pct) {
+      document.getElementById('progressBar').style.width = pct + '%';
+    }
+
+    function setLog(msg) {
+      document.getElementById('log').textContent = msg;
+    }
+
+    function install() {
+      if (running) return;
+      running = true;
+      stepIdx = 0;
+
+      const btn = document.getElementById('installBtn');
+      btn.disabled = true;
+      btn.textContent = 'Instalando…';
+      setProgress(5);
+      setLog('');
+
+      parent.postMessage({ pluginMessage: { type: 'install' } }, '*');
+    }
+
+    onmessage = (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+
+      if (msg.type === 'progress') {
+        setLog(msg.message);
+        if (stepIdx < steps.length) {
+          markDone(steps[stepIdx]);
+          stepIdx++;
+        }
+        setProgress(Math.min(10 + stepIdx * 22, 88));
+      }
+
+      if (msg.type === 'done') {
+        steps.forEach(markDone);
+        setProgress(100);
+        setLog('');
+        document.getElementById('banner').style.display = 'flex';
+
+        const btn = document.getElementById('installBtn');
+        btn.disabled = false;
+        btn.textContent = 'Cerrar';
+        btn.onclick = () => parent.postMessage({ pluginMessage: { type: 'close' } }, '*');
+        running = false;
+      }
+
+      if (msg.type === 'error') {
+        setProgress(0);
+        const log = document.getElementById('log');
+        log.textContent = '✗ Error: ' + msg.message;
+        log.style.color = '#EF4444';
+
+        const btn = document.getElementById('installBtn');
+        btn.disabled = false;
+        btn.textContent = 'Reintentar';
+        running = false;
+      }
+    };
+  </script>
+</body>
+</html>
