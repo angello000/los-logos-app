@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guía de Uso · 99 Logos</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Kalam:wght@400;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #1b1a17;
+      --ink2:    #3a3835;
+      --muted:   #7a766f;
+      --paper:   #fbf8f1;
+      --bg:      #f0eee9;
+      --accent:  #f5d65a;
+      --accent2: #cfe3c2;
+      --line:    1.5px solid #1b1a17;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Patrick Hand', cursive;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.55;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: var(--line);
+      background: var(--paper);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .logo-circle {
+      width: 42px;
+      height: 42px;
+      border: var(--line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: 16px;
+      background: #fff;
+    }
+
+    .logo-name {
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: 20px;
+    }
+
+    nav a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 28px;
+      transition: color .2s;
+    }
+
+    nav a:hover, nav a.active { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      color: var(--paper);
+      padding: 80px 48px 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+    }
+
+    .hero-tag {
+      font-family: 'Caveat', cursive;
+      font-size: 15px;
+      color: rgba(251,248,241,.55);
+      letter-spacing: .04em;
+    }
+
+    .hero h1 {
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: clamp(30px, 5vw, 50px);
+      line-height: 1.15;
+      max-width: 640px;
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: rgba(251,248,241,.7);
+      max-width: 540px;
+    }
+
+    .hero-accent-line {
+      width: 72px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+
+    /* ── TOC ── */
+    .toc-bar {
+      background: var(--paper);
+      border-bottom: var(--line);
+      padding: 14px 48px;
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .toc-bar::-webkit-scrollbar { display: none; }
+
+    .toc-link {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      white-space: nowrap;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+      transition: color .2s, border-color .2s;
+    }
+
+    .toc-link:hover {
+      color: var(--ink);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ── STEPS SECTION ── */
+    .steps-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 48px;
+    }
+
+    .steps-section + .steps-section {
+      border-top: 1.5px solid rgba(27,26,23,.12);
+    }
+
+    .section-label {
+      font-family: 'Caveat', cursive;
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+    }
+
+    .steps-section h2 {
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: clamp(22px, 3vw, 30px);
+      margin-bottom: 8px;
+    }
+
+    .steps-section > p {
+      font-size: 15px;
+      color: var(--ink2);
+      max-width: 600px;
+      margin-bottom: 36px;
+    }
+
+    /* ── STEP CARDS ── */
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .step-card {
+      border: var(--line);
+      border-radius: 14px;
+      background: var(--paper);
+      padding: 24px 24px 24px 20px;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      position: relative;
+    }
+
+    .step-card.highlighted {
+      background: var(--accent);
+    }
+
+    .step-card.highlighted2 {
+      background: var(--accent2);
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border: var(--line);
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .step-card.highlighted .step-num,
+    .step-card.highlighted2 .step-num {
+      background: var(--paper);
+    }
+
+    .step-body h3 {
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .step-body p {
+      font-size: 14px;
+      color: var(--ink2);
+      margin-bottom: 10px;
+    }
+
+    .step-body p:last-child { margin-bottom: 0; }
+
+    .step-tag {
+      display: inline-block;
+      border: var(--line);
+      border-radius: 999px;
+      padding: 2px 10px;
+      font-size: 11px;
+      background: #fff;
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+
+    /* ── TIP CALLOUT ── */
+    .tip {
+      border: var(--line);
+      border-radius: 10px;
+      background: var(--accent);
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-top: 24px;
+    }
+
+    .tip-icon { font-size: 22px; flex-shrink: 0; }
+
+    .tip-text strong {
+      font-family: 'Kalam', cursive;
+      font-size: 15px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .tip-text p {
+      font-size: 13px;
+      color: var(--ink2);
+      margin: 0;
+    }
+
+    /* ── MOCKUP PLACEHOLDER ── */
+    .mockup {
+      border: var(--line);
+      border-radius: 14px;
+      background: repeating-linear-gradient(
+        135deg, transparent 0 10px, rgba(0,0,0,.05) 10px 11px
+      );
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 28px;
+    }
+
+    /* ── FAQ ── */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .faq-item {
+      border: var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 16px 20px;
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-q::after {
+      content: '↓';
+      font-family: 'Patrick Hand', cursive;
+      font-weight: 400;
+      font-size: 14px;
+      color: var(--muted);
+      transition: transform .2s;
+    }
+
+    .faq-item.open .faq-q::after {
+      transform: rotate(180deg);
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 14px;
+      color: var(--ink2);
+      border-top: 1.5px solid rgba(27,26,23,.1);
+      padding-top: 14px;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+
+    /* ── CTA ── */
+    .cta-strip {
+      background: var(--accent);
+      border-top: var(--line);
+      border-bottom: var(--line);
+      padding: 64px 48px;
+      text-align: center;
+    }
+
+    .cta-strip h2 {
+      font-family: 'Kalam', cursive;
+      font-weight: 700;
+      font-size: clamp(24px, 3.5vw, 36px);
+      margin-bottom: 12px;
+    }
+
+    .cta-strip p {
+      font-size: 16px;
+      color: var(--ink2);
+      margin-bottom: 28px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: var(--line);
+      border-radius: 8px;
+      padding: 12px 28px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Patrick Hand', cursive;
+      font-size: 15px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity .2s;
+    }
+
+    .cta-btn:hover { opacity: .85; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: var(--line);
+      background: var(--paper);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .site-header { padding: 14px 20px; }
+      nav { display: none; }
+      .hero { padding: 52px 20px 48px; }
+      .toc-bar { padding: 12px 20px; }
+      .steps-section { padding: 48px 20px; }
+      .cta-strip { padding: 48px 20px; }
+      .site-footer { flex-direction: column; gap: 8px; text-align: center; }
+      .step-card { grid-template-columns: 40px 1fr; gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <div class="logo-circle">99</div>
+      <span class="logo-name">logos</span>
+    </a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="sobre-nosotros.html">Sobre nosotros</a>
+      <a href="guia-de-uso.html" class="active">Guía de uso</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">✦ Guía de uso</div>
+    <h1>Todo lo que necesitas saber para empezar</h1>
+    <p class="hero-sub">
+      De cero a tu primera propuesta entregada en menos de 10 minutos.
+      Sigue estos pasos y domina 99 Logos.
+    </p>
+    <div class="hero-accent-line"></div>
+  </section>
+
+  <!-- TABLA DE CONTENIDO -->
+  <div class="toc-bar">
+    <a href="#paso1" class="toc-link">1 · Descarga la app</a>
+    <a href="#paso2" class="toc-link">2 · Crea tu perfil</a>
+    <a href="#paso3" class="toc-link">3 · Añade tu primer cliente</a>
+    <a href="#paso4" class="toc-link">4 · Analiza el negocio</a>
+    <a href="#paso5" class="toc-link">5 · Genera propuestas</a>
+    <a href="#paso6" class="toc-link">6 · Envía y gestiona</a>
+    <a href="#faq" class="toc-link">Preguntas frecuentes</a>
+  </div>
+
+  <!-- PASO 1 -->
+  <section class="steps-section" id="paso1">
+    <div class="section-label">↳ Primeros pasos</div>
+    <h2>Descarga e instala la app</h2>
+    <p>Disponible para iOS y Android. La instalación tarda menos de un minuto.</p>
+    <div class="steps-list">
+      <div class="step-card highlighted">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Descarga 99 Logos desde la tienda</h3>
+          <p>
+            Busca «99 Logos» en la App Store o Google Play y pulsa
+            <strong>Instalar</strong>. La app pesa menos de 30 MB.
+          </p>
+          <span class="step-tag">App Store</span>
+          <span class="step-tag">Google Play</span>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Abre la app y acepta los permisos</h3>
+          <p>
+            99 Logos necesita acceso a la cámara para analizar locales
+            y notificaciones para avisarte cuando un cliente aprueba.
+            Pulsa <strong>Permitir</strong> en ambos diálogos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASO 2 -->
+  <section class="steps-section" id="paso2">
+    <div class="section-label">↳ Configura tu cuenta</div>
+    <h2>Crea tu perfil de diseñador</h2>
+    <p>Tu perfil es la primera impresión que tendrán tus clientes al recibir una propuesta.</p>
+    <div class="steps-list">
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Regístrate con tu correo o Google</h3>
+          <p>
+            En la pantalla de inicio pulsa <strong>Crear cuenta</strong>.
+            Puedes registrarte con tu email o vincular tu cuenta de Google
+            con un solo toque.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Completa tu información profesional</h3>
+          <p>
+            Añade tu nombre, especialidad (logotipos, branding, ilustración…)
+            y una foto de perfil. Estos datos aparecerán en tus propuestas.
+          </p>
+        </div>
+      </div>
+      <div class="step-card highlighted2">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Configura tus tarifas base</h3>
+          <p>
+            Ve a <strong>⚙ Ajustes → Tarifas</strong> y establece tus precios
+            por tipo de proyecto. La app los usará como punto de partida al
+            generar presupuestos.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">✏️</span>
+      <div class="tip-text">
+        <strong>Consejo</strong>
+        <p>Un perfil completo genera un 40 % más de respuestas positivas de los clientes. ¡No te saltes este paso!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASO 3 -->
+  <section class="steps-section" id="paso3">
+    <div class="section-label">↳ Gestión de clientes</div>
+    <h2>Añade tu primer cliente</h2>
+    <p>Cada cliente tiene su propia ficha con historial de propuestas, conversaciones y archivos.</p>
+    <div class="steps-list">
+      <div class="step-card">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <h3>Pulsa «＋ Nuevo cliente» en el Home</h3>
+          <p>
+            Desde la pantalla principal, toca el botón amarillo
+            <strong>＋ Nuevo cliente</strong> para abrir el formulario de registro.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <h3>Completa los datos del negocio</h3>
+          <p>
+            Introduce el nombre del negocio, rubro, ciudad y datos de contacto.
+            Cuanta más información añadas, mejores serán las sugerencias de la app.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASO 4 -->
+  <section class="steps-section" id="paso4">
+    <div class="section-label">↳ Análisis visual</div>
+    <h2>Analiza el negocio con la cámara</h2>
+    <p>Esta es la función estrella de 99 Logos: escanea el local físico del cliente para obtener inspiración automática.</p>
+    <div class="steps-list">
+      <div class="step-card highlighted">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <h3>Toca el ícono ◉ de la barra inferior</h3>
+          <p>
+            Abre la vista de cámara. Apunta al local, fachada o espacio de
+            trabajo del cliente.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">9</div>
+        <div class="step-body">
+          <h3>Captura la foto</h3>
+          <p>
+            Asegúrate de que hay buena iluminación y el encuadre muestra
+            bien los elementos visuales del negocio. Pulsa el botón central
+            para capturar.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">10</div>
+        <div class="step-body">
+          <h3>Revisa el análisis de color y estilo</h3>
+          <p>
+            La app extrae la paleta de colores dominante, detecta tipografías
+            presentes y sugiere un estilo gráfico alineado con el negocio.
+          </p>
+          <span class="step-tag">Paleta de color</span>
+          <span class="step-tag">Estilos sugeridos</span>
+          <span class="step-tag">Referencias</span>
+        </div>
+      </div>
+    </div>
+    <div class="mockup">[ captura de pantalla — análisis de cámara ]</div>
+  </section>
+
+  <!-- PASO 5 -->
+  <section class="steps-section" id="paso5">
+    <div class="section-label">↳ Propuestas</div>
+    <h2>Genera tu propuesta de logo</h2>
+    <p>Con el análisis listo, la app te sugiere conceptos y arma el documento de propuesta en segundos.</p>
+    <div class="steps-list">
+      <div class="step-card highlighted2">
+        <div class="step-num">11</div>
+        <div class="step-body">
+          <h3>Elige entre los conceptos sugeridos</h3>
+          <p>
+            La app presenta 3 direcciones creativas basadas en el análisis.
+            Selecciona una o combínalas según tu criterio profesional.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">12</div>
+        <div class="step-body">
+          <h3>Ajusta el presupuesto y el alcance</h3>
+          <p>
+            Modifica los ítems incluidos (versiones, formatos, revisiones) y
+            el precio final antes de generar el documento.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">13</div>
+        <div class="step-body">
+          <h3>Genera el PDF de propuesta</h3>
+          <p>
+            Pulsa <strong>Generar propuesta</strong>. La app monta un PDF
+            profesional con tu branding, los conceptos elegidos y el desglose
+            de precio.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">⚡</span>
+      <div class="tip-text">
+        <strong>Tip de velocidad</strong>
+        <p>Puedes guardar plantillas de propuesta para tipos de proyecto recurrentes. Accede desde ⚙ → Plantillas.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASO 6 -->
+  <section class="steps-section" id="paso6">
+    <div class="section-label">↳ Envío y seguimiento</div>
+    <h2>Envía la propuesta y gestiona la respuesta</h2>
+    <p>Todo el seguimiento desde la app, sin saltar a WhatsApp ni al email.</p>
+    <div class="steps-list">
+      <div class="step-card">
+        <div class="step-num">14</div>
+        <div class="step-body">
+          <h3>Envía por el canal que prefiera el cliente</h3>
+          <p>
+            Comparte el enlace de propuesta directamente por WhatsApp, email
+            o copia el link. El cliente puede verla desde cualquier navegador
+            sin instalar nada.
+          </p>
+          <span class="step-tag">WhatsApp</span>
+          <span class="step-tag">Email</span>
+          <span class="step-tag">Enlace</span>
+        </div>
+      </div>
+      <div class="step-card highlighted">
+        <div class="step-num">15</div>
+        <div class="step-body">
+          <h3>Recibe notificación cuando el cliente la vea</h3>
+          <p>
+            Sabrás exactamente cuándo abrió la propuesta y cuánto tiempo
+            la revisó. El momento perfecto para hacer seguimiento.
+          </p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">16</div>
+        <div class="step-body">
+          <h3>Gestiona la aprobación o los comentarios</h3>
+          <p>
+            El cliente puede aprobar directamente en el enlace o dejar notas.
+            Tú recibes la notificación y puedes responder desde la ficha del
+            cliente en la sección <strong>≡ Clientes</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="mockup">[ captura de pantalla — ficha de cliente con propuesta aprobada ]</div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="steps-section" id="faq">
+    <div class="section-label">↳ Dudas frecuentes</div>
+    <h2>Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          ¿Necesito saber programar o usar IA para usar 99 Logos?
+        </div>
+        <div class="faq-a">
+          No. 99 Logos está diseñada para diseñadores, no para técnicos.
+          Toda la inteligencia trabaja en segundo plano; tú solo tomas fotos
+          y decides.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          ¿Puedo usar la app sin conexión a internet?
+        </div>
+        <div class="faq-a">
+          Las funciones básicas (ver clientes, editar propuestas guardadas)
+          funcionan sin internet. La cámara inteligente y el envío de propuestas
+          requieren conexión.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          ¿Cuántas propuestas puedo generar al mes?
+        </div>
+        <div class="faq-a">
+          El plan gratuito incluye 5 propuestas al mes. Con el plan Pro
+          (disponible desde la app) las propuestas son ilimitadas y desbloqueas
+          plantillas premium.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          ¿Mis clientes tienen que instalar la app para ver la propuesta?
+        </div>
+        <div class="faq-a">
+          No. Las propuestas se visualizan en un enlace web optimizado para
+          móvil y escritorio. Tu cliente solo necesita un navegador.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          ¿Cómo exporto los archivos finales del proyecto?
+        </div>
+        <div class="faq-a">
+          Desde la ficha del cliente → pestaña <strong>Archivos</strong> puedes
+          subir y compartir los entregables finales (PDF, ZIP, PNG) directamente
+          al cliente.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-strip">
+    <h2>¿Listo para tu primera propuesta?</h2>
+    <p>Descarga 99 Logos y empieza gratis. Sin tarjeta de crédito.</p>
+    <a class="cta-btn" href="index.html">Ver el prototipo →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div>© 2025 · 99 Logos — tu copiloto para propuestas de diseño</div>
+    <div>
+      <a href="sobre-nosotros.html" style="color:var(--muted);text-decoration:none;margin-left:20px;">Sobre nosotros</a>
+      <a href="guia-de-uso.html" style="color:var(--muted);text-decoration:none;margin-left:20px;">Guía de uso</a>
+    </div>
+  </footer>
+
+</body>
+</html>
